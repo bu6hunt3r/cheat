@@ -6,3 +6,10 @@ echo '42 is the solution' | xxd -p
 # Result: 42 is the solution
 echo '34322069732074686520736f6c7574696f6e0a' | xxd -r -p
 
+# Format examples
+# -c: num of columns
+# -s: seek to offset
+# -l: stop after n bytes
+# -p continous postscript style (plain hexdump)
+xxd  -p -c 8 -s 64 -l 56 /bin/true
+
