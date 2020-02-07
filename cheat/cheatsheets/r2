@@ -971,3 +971,12 @@
      2) Reference it while being located within visual insert mode (V -> i)
 	r2> e cmd.hexcursor=tp ios_header
 
+# Profiling a r2wars bot using one-liner
+
+    1) Profiling by stepping through assembly
+
+        $ radare2 malloc://1024 -c "e asm.arch=x86; e asm.bits=32; aei; aeim; wx $(rasm2 -a x86 -b 32 -f yoloBot.x86-32.asm) @100; aer PC=100; aer SP=SP+100; Vpp"
+
+    2) Profiling by analysing memory usage afterwards
+    
+        $ radare2 malloc://1024 -c "e asm.arch=x86; e asm.bits=32; aei; aeim; wx $(rasm2 -a x86 -b 32 -f yoloBot.x86-32.asm) @100; aer PC=100; aer SP=SP+100; 150ds; s 0x0; V\!"
